@@ -36,7 +36,7 @@
 	<!-- PostgreSQL -->
 	<Resource name="jdbc/Sistema_Gestion_Transporte_PrivadoDS" auth="Container" type="javax.sql.DataSource"
 	      maxTotal="20" maxIdle="5" maxWaitMillis="10000"
-	      username="postgres" password=""
+	      username="postgres" password="Elias12052005"
 	      driverClassName="org.postgresql.Driver" 
 	      url="jdbc:postgresql://localhost/Sistema_Gestion_Transporte_Privadodb"/>
 
