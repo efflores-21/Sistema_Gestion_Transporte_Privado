@@ -8,10 +8,7 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-public class Conductor {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+public class Conductor extends BaseEntity{
     @Column(nullable = false)
     private String nombreCompleto;
     @ManyToOne(fetch =  FetchType.LAZY)

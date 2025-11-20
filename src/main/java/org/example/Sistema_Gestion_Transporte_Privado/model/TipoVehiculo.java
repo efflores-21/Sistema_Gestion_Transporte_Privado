@@ -9,12 +9,12 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
-@View(name="Simple", members="nombre")
-public class tipoCliente {
+@View(name = "Simple", members = "nombreTipo")
+public class TipoVehiculo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @Column(nullable = false,unique = true)
-    private String nombre; // Ejemplo: "Regular", "Premium", etc.
-    private String descripcion;
+    @Column(nullable = false, unique = true)
+    private String nombreTipo; // Ejemplo: "Sedan", "SUV", "Camioneta", etc.
+    private Integer capacidadPasajeros;
 }
