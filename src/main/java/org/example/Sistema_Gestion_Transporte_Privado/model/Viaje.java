@@ -15,24 +15,28 @@ public class Viaje {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    //@OneToOne
-    //@JoinColumn(name = "reserva_id")
-    //private Reserva reserva;
+    @OneToOne
+    @JoinColumn(name = "reserva_id")
+    private Reserva reserva;
 
-    //@ManyToOne
-    //private Cliente cliente;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Cliente cliente;
 
-    //@ManyToOne
-    //@DescriptionsList(descriptionProperties = "nombreCompleto")
-    //private Conductor conductor;
+    @ManyToOne
+    @DescriptionsList(descriptionProperties = "nombreCompleto")
+    private Conductor conductor;
 
-    //@ManyToOne
-    //@DescriptionsList(descriptionProperties = "placa")
-    //private Vehiculo vehiculo;
+    @ManyToOne
+    @DescriptionsList(descriptionProperties = "placa")
+    private Vehiculo vehiculo;
 
     private LocalDate fechaInicio;
+
     private LocalDate fechaFin;
+
     private double distanciaRecorrida; // en kilómetros
+
     private double tarifa; // costo del viaje
+
     private String estado; // Ejemplo: "En Progreso", "Completado", "Cancelado"
 }

@@ -1,20 +1,20 @@
-package org.example.Sistema_Gestion_Transporte_Privado.model;
+package Tipos;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.openxava.annotations.View;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
 @Setter
-@View(name="Simple", members="nombre")
-public class tipoCliente {
+public class TipoCliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+
     @Column(nullable = false,unique = true)
     private String nombre; // Ejemplo: "Regular", "Premium", etc.
+
     private String descripcion;
 }

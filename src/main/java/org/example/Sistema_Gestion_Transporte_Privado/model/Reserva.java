@@ -14,20 +14,24 @@ public class Reserva {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    //@ManyToOne(fetch = FetchType.LAZY)
-    //@DescriptionsList(descriptionProperties = "nombre")
-    //private Cliente cliente;
 
-    //@ManyToOne(fetch = FetchType.LAZY)
-    //@DescriptionsList(descriptionProperties = ("nombre")
-    //private Vehiculo vehiculo;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @DescriptionsList(descriptionProperties = "nombre")
+    private Cliente cliente;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @DescriptionsList(descriptionProperties = "nombre")
+    private Vehiculo vehiculo;
 
     private LocalDate fechaSolicitud;
+
     private LocalDate fechaReserva;
+
     private Integer numeroPasajeros;
+
     private String estado; // Ejemplo: "Pendiente", "Confirmada", "Cancelada"
 
-    //@OneToOne(mappedBy = "reserva")
-    //private Viaje viaje;
+    @OneToOne(mappedBy = "reserva")
+    private Viaje viaje;
 
 }
