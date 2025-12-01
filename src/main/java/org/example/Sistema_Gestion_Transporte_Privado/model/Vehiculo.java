@@ -1,41 +1,39 @@
 package org.example.Sistema_Gestion_Transporte_Privado.model;
 
-import Tipos.TipoVehiculo;
 import lombok.Getter;
 import lombok.Setter;
-import org.openxava.annotations.DescriptionsList;
-import org.openxava.annotations.ReferenceView;
+import org.example.Sistema_Gestion_Transporte_Privado.Tipos.TipoVehiculo;
+import org.openxava.annotations.Required;
+import org.openxava.annotations.Stereotype;
 
 import javax.persistence.*;
-import java.util.List;
+import javax.ws.rs.DefaultValue;
 
 @Entity
 @Getter
 @Setter
-public class Vehiculo extends BaseEntity{
+public class Vehiculo {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
 
-    @Column(nullable = false, unique = true)
+    @Required @Column(length = 10)
     private String placa;
 
+    @Required @Column(length = 50)
     private String marca;
 
+    @Required @Column(length = 50)
     private String modelo;
 
-    @Column(name = "anio_fabricacion")
-    private Integer anioFabricacion;
-
-    @Column(name = "capacidad_pasajeros")
+    @Stereotype("INTEGER")
+    @Required
     private Integer capacidadPasajeros;
 
-    private String estado;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @DescriptionsList(descriptionProperties = "nombreTipo")
+    @Enumerated(EnumType.STRING)
+    @Required
     private TipoVehiculo tipoVehiculo;
 
-    @OneToMany(mappedBy = "vehiculo")
-    private List<Reserva> reservas;
-
-    @OneToMany(mappedBy = "vehiculo")
-    private List<Viaje> viajes;
+    @Column(length = 20)
+    @DefaultValue("Disponible")
+    private String estado = "Disponible";
 }

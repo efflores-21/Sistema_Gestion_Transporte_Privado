@@ -1,34 +1,17 @@
 package org.example.Sistema_Gestion_Transporte_Privado.model;
 
-import Tipos.TipoCliente;
+import org.example.Sistema_Gestion_Transporte_Privado.Tipos.TipoCliente;
 import lombok.Getter;
 import lombok.Setter;
-import org.openxava.annotations.DescriptionsList;
-import org.openxava.annotations.ReferenceView;
+import org.apache.logging.log4j.core.config.plugins.validation.constraints.Required;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 @Getter
 @Setter
-public class Cliente extends BaseEntity{
-
-    @Column(nullable = false)
-    private String nombre;
-
-    private String telefono;
-
-    private String correoElectronico;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @DescriptionsList(descriptionProperties = "nombre")
-    @ReferenceView("Simple")
+public class Cliente extends Persona{
+    @Enumerated(EnumType.STRING)
+    @Required
     private TipoCliente tipoCliente;
-
-    @OneToMany(mappedBy = "cliente")
-    private List<Reserva> reservas;
-
-    @OneToMany(mappedBy = "cliente")
-    private List<Viaje> viajes;
 }

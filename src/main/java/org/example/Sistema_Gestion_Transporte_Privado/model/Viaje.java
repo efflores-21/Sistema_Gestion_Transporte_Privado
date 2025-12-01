@@ -2,41 +2,39 @@ package org.example.Sistema_Gestion_Transporte_Privado.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.openxava.annotations.DescriptionsList;
+import org.openxava.annotations.Required;
+import org.openxava.annotations.Stereotype;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import javax.ws.rs.DefaultValue;
 
 @Entity
 @Getter
 @Setter
 public class Viaje {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @OneToOne
-    @JoinColumn(name = "reserva_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @Required
     private Reserva reserva;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    private Cliente cliente;
-
-    @ManyToOne
-    @DescriptionsList(descriptionProperties = "nombreCompleto")
+    @Required
     private Conductor conductor;
 
-    @ManyToOne
-    @DescriptionsList(descriptionProperties = "placa")
-    private Vehiculo vehiculo;
+    @Required @Column(length = 100)
+    private String origen;
 
-    private LocalDate fechaInicio;
+    @Required
+    @Column(length = 100)
+    private String destino;
 
-    private LocalDate fechaFin;
+    @Stereotype("MONEY")
+    private Double distanciaKm;
 
-    private double distanciaRecorrida; // en kilómetros
-
-    private double tarifa; // costo del viaje
-
-    private String estado; // Ejemplo: "En Progreso", "Completado", "Cancelado"
+    @Column(length = 20)
+    @DefaultValue("Pendiente")
+    private String estado = "Pendiente";
 }

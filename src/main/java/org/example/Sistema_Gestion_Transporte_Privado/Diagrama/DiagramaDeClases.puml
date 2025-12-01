@@ -1,0 +1,164 @@
+@startuml
+
+@startuml
+' Estilo
+skinparam classAttributeIconVisibility false
+skinparam class {
+  BackgroundColor White
+  BorderColor Black
+  ArrowColor Black
+}
+
+' === CLASES BASE ===
+
+class Persona << (M, #FFD700) @MappedSuperclass >> {
+  - Integer id
+  - String nombre
+  - String telefono
+  - String email
+}
+
+class Transaccion << (M, #98FB98) @MappedSuperclass >> {
+  - Integer id
+  - LocalDateTime fechaRegistro
+  - Double monto
+}
+
+' === HEREDAN DE PERSONA ===
+
+class Cliente {
+  - TipoCliente tipoCliente
+  + void registrarCliente()
+}
+
+class Conductor {
+  - TipoLicencia tipoLicencia
+  - Integer aniosExperiencia
+  - Boolean disponible
+  + void actualizarDisponibilidad()
+}
+
+class Proveedor {
+  - String tipoServicio
+  + void registrarProveedor()
+}
+
+' === HEREDAN DE TRANSACCION ===
+
+class Factura {
+  - LocalDate fechaEmision
+  - Double impuestos
+  - EstadoPago estadoPago
+  - Viaje viaje
+  + Double getTotal()
+}
+
+class Pago {
+  - LocalDate fechaPago
+  - MetodoPago metodoPago
+  - String referencia
+  - Factura factura
+}
+
+' NOTA: Incluimos Reserva como transacción SOLO si consideras su "costo" como monto
+class Reserva {
+  - LocalDateTime fechaViaje
+  - Integer numeroPasajeros
+  - String estado
+  - Cliente cliente
+  - Vehiculo vehiculo
+  - Viaje viaje
+}
+
+' === OTRAS CLASES ===
+
+class Vehiculo {
+  - String placa
+  - String marca
+  - String modelo
+  - Integer capacidadPasajeros
+  - String estado
+  - TipoVehiculo tipoVehiculo
+}
+
+class Viaje {
+  - String origen
+  - String destino
+  - Double distanciaKm
+  - Conductor conductor
+  - Reserva reserva
+  - String estado
+}
+
+class Mantenimiento {
+  - LocalDate fecha
+  - String tipo
+  - Double costo
+  - String descripcion
+  - Vehiculo vehiculo
+  - Proveedor proveedor
+}
+
+' === ENUMS ===
+
+enum TipoCliente {
+  CORPORATIVO
+  PARTICULAR
+  INTERNO
+}
+
+enum TipoLicencia {
+  A
+  B
+  C
+  D
+  E
+}
+
+enum TipoVehiculo {
+  SEDAN
+  SUV
+  VAN
+  MINIBUS
+  CAMIONETA
+}
+
+enum EstadoPago {
+  PENDIENTE
+  PAGADO
+  PARCIAL
+  CANCELADO
+}
+
+enum MetodoPago {
+  EFECTIVO
+  TARJETA_CREDITO
+  TARJETA_DEBITO
+  TRANSFERENCIA
+  PAYPAL
+}
+
+' === RELACIONES DE HERENCIA ===
+
+Persona <|-- Cliente
+Persona <|-- Conductor
+Persona <|-- Proveedor
+
+Transaccion <|-- Factura
+Transaccion <|-- Pago
+' Reserva --|> Transaccion  ' <--- DESCOMENTA si Reserva hereda de Transaccion
+
+' === RELACIONES DE ASOCIACIÓN ===
+
+Cliente "1" -- "0..*" Reserva
+Vehiculo "1" -- "0..*" Reserva
+Reserva "1" -- "1" Viaje
+Viaje "1" -- "1" Conductor
+Viaje "1" -- "1" Factura
+Factura "1" -- "0..*" Pago
+Vehiculo "1" -- "0..*" Mantenimiento
+Proveedor "1" -- "0..*" Mantenimiento
+
+@enduml
+
+@enduml
