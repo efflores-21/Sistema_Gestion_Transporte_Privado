@@ -2,31 +2,19 @@ package org.example.Sistema_Gestion_Transporte_Privado.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.openxava.annotations.Required;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 @Entity
 @Getter
 @Setter
-public class Proveedor {
+public class Proveedor extends Persona {
+    @Required
+    @Column(length = 100)
+    private String tipoServicio; // Ej: "Mecánica", "Neumáticos"
 
-    @Id 
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-
-    private String nombre;
-
-    private String email;
-
-    private String telefono;
-
-    private String tipoServicio;
-
-    /*@OneToMany(mappedBy = "proveedor")
-    private List<Mantenimiento> mantenimientos;*/
 }
 
 

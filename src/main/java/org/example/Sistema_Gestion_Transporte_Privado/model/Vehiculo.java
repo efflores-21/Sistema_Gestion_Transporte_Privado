@@ -3,6 +3,7 @@ package org.example.Sistema_Gestion_Transporte_Privado.model;
 import lombok.Getter;
 import lombok.Setter;
 import org.example.Sistema_Gestion_Transporte_Privado.Tipos.TipoVehiculo;
+import org.openxava.annotations.Hidden;
 import org.openxava.annotations.Required;
 import org.openxava.annotations.Stereotype;
 
@@ -13,7 +14,9 @@ import javax.ws.rs.DefaultValue;
 @Getter
 @Setter
 public class Vehiculo {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Hidden
     private Integer id;
 
     @Required @Column(length = 10)

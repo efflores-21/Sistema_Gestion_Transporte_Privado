@@ -3,6 +3,7 @@ package org.example.Sistema_Gestion_Transporte_Privado.model;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.logging.log4j.core.config.plugins.validation.constraints.Required;
+import org.openxava.annotations.Hidden;
 
 import javax.persistence.*;
 
@@ -10,7 +11,9 @@ import javax.persistence.*;
 @Getter
 @Setter
 public abstract class Persona {
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Hidden
     private Integer id;
 
     @Required @Column(length = 100)

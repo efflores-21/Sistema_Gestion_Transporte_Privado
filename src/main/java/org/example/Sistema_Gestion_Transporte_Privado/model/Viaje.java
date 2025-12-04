@@ -2,6 +2,7 @@ package org.example.Sistema_Gestion_Transporte_Privado.model;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.openxava.annotations.Hidden;
 import org.openxava.annotations.Required;
 import org.openxava.annotations.Stereotype;
 
@@ -13,7 +14,9 @@ import javax.ws.rs.DefaultValue;
 @Setter
 public class Viaje {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Hidden
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)

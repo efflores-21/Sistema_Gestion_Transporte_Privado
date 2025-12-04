@@ -2,34 +2,34 @@ package org.example.Sistema_Gestion_Transporte_Privado.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.openxava.annotations.*;
 import javax.persistence.*;
-import javax.ws.rs.DefaultValue;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
-@View(members = "viaje, monto, impuestos, estadoPago, fechaEmision")
 @Getter @Setter
 public class Factura extends Transaccion {
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @Required
+    @OneToOne
+    @JoinColumn(name = "id_viaje", nullable = false)
     private Viaje viaje;
 
-    @Stereotype("MONEY")
-    @Required
+    @Column(name = "fecha_emision", nullable = false)
+    private LocalDate fechaEmision;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "estado_pago", nullable = false)
+    private EstadoPago estadoPago = EstadoPago.PENDIENTE;
+
+    @Column(nullable = false)
     private Double impuestos;
 
-    @Stereotype("ENUMERATION")
-    @Required
-    @DefaultValue("PENDIENTE")
-    private String estadoPago;
+    // Constructor
+    public Factura() {}
 
-    @Stereotype("DATE")
-    @ReadOnly
-    private Date fechaEmision = new Date();
-
-    public Double getTotal() {
-        return getMonto() + impuestos;
+    public Factura(Viaje viaje, Double monto, Double impuestos) {
+        super(monto);
+        this.viaje = viaje;
+        this.impuestos = impuestos;
+        this.fechaEmision = LocalDate.now();
     }
 }

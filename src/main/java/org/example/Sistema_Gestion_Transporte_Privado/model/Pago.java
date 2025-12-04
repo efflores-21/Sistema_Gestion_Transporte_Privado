@@ -2,27 +2,37 @@ package org.example.Sistema_Gestion_Transporte_Privado.model;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.openxava.annotations.*;
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
-@View(members = "factura, monto, metodoPago, referencia, fechaPago")
-@Getter @Setter
+@Getter
+@Setter
 public class Pago extends Transaccion {
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @Required
+    @ManyToOne
+    @JoinColumn(name = "id_factura", nullable = false)
     private Factura factura;
 
-    @Stereotype("TEXT")
-    @Required
-    private String metodoPago;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "metodo_pago", nullable = false)
+    private MetodoPago metodoPago;
 
-    @Stereotype("TEXT")
-    private String referencia;
+    @Column(name = "fecha_pago", nullable = false)
+    private LocalDate fechaPago;
 
-    @Stereotype("DATE")
-    @Required
-    private Date fechaPago = new Date();
+    @Column
+    private String referencia; // número de transacción, etc.
+
+    // Constructor
+    public Pago() {}
+
+    public Pago(Factura factura, Double monto, MetodoPago metodoPago, String referencia) {
+        super(monto);
+        this.factura = factura;
+        this.metodoPago = metodoPago;
+        this.referencia = referencia;
+        this.fechaPago = LocalDate.now();
+    }
+
 }
