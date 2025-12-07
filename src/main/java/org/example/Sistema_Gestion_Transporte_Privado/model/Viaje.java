@@ -3,11 +3,13 @@ package org.example.Sistema_Gestion_Transporte_Privado.model;
 import lombok.Getter;
 import lombok.Setter;
 import org.openxava.annotations.Hidden;
+import org.openxava.annotations.ReadOnly;
 import org.openxava.annotations.Required;
 import org.openxava.annotations.Stereotype;
 
 import javax.persistence.*;
 import javax.ws.rs.DefaultValue;
+import java.util.Collection;
 
 @Entity
 @Getter
@@ -40,4 +42,5 @@ public class Viaje {
     @Column(length = 20)
     @DefaultValue("Pendiente")
     private String estado = "Pendiente";
+
 }

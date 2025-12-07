@@ -23,7 +23,6 @@ public class Factura extends Transaccion {
     @Column(nullable = false)
     private Double impuestos;
 
-    // Constructor
     public Factura() {}
 
     public Factura(Viaje viaje, Double monto, Double impuestos) {

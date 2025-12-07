@@ -13,7 +13,7 @@ Examples of controllers (from test application):
 https://github.com/openxava/openxava/blob/master/openxavatest/src/main/resources/xava/controllers.xml
 -->
 
-<controllers>
+<controller>
     
     <!-- Environment variable:
     <env-var name="Sistema_Gestion_Transporte_Privado_DEFAULT_YEAR" value="2015"/> 
@@ -32,5 +32,11 @@ https://github.com/openxava/openxava/blob/master/openxavatest/src/main/resources
     	</action>
 	</controller>    
     -->
-    
-</controllers>
+</controller>
+    <troller name="Usuario">
+    <action name="save"/>
+            <class name="org.example.Sistema_Gestion_Transporte_Privado.Acciones.MiSaveUsuarioAction"/>
+            <mode name="detail"/>
+</controller>
+
+        </controllers>
