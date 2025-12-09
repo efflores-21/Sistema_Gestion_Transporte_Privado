@@ -2,41 +2,38 @@
 
 <!DOCTYPE controllers SYSTEM "dtds/controllers.dtd">
 
-<!-- 
-Controllers doc: 
+<!--
+Controllers doc:
 https://www.openxava.org/OpenXavaDoc/docs/controllers_en.html
 
 Default controllers included in OpenXava (you can extend from them):
 https://github.com/openxava/openxava/blob/master/openxava/src/main/resources/xava/default-controllers.xml
- 
+
 Examples of controllers (from test application):
 https://github.com/openxava/openxava/blob/master/openxavatest/src/main/resources/xava/controllers.xml
 -->
 
-<controller>
-    
-    <!-- Environment variable:
-    <env-var name="Sistema_Gestion_Transporte_Privado_DEFAULT_YEAR" value="2015"/> 
-    -->
-    
-    <!-- Session object:
-    <object name="Sistema_Gestion_Transporte_Privado_activeYear" class="java.lang.Integer" value="2015" 
-    	    scope="global"/>    
-    -->
-    
-    <!-- Controller:
-    <controller name="Teacher">
-    	<extends controller="Typical"/>
-    	<action name="new" icon="plus-box-multiple" keystroke="Control N"
-        	class="actions.CreateTeacher">
-    	</action>
-	</controller>    
-    -->
-</controller>
-    <troller name="Usuario">
-    <action name="save"/>
-            <class name="org.example.Sistema_Gestion_Transporte_Privado.Acciones.MiSaveUsuarioAction"/>
-            <mode name="detail"/>
-</controller>
+<controllers>
 
-        </controllers>
+    <controller name="UsuarioAdmin">
+        <extends controller="Typical"/>
+    </controller>
+
+    <!-- Environment variable:
+    <env-var name="Sistema_Gestion_Transporte_Privado_DEFAULT_YEAR" value="2015"/>
+    -->
+
+    <!-- Session object:
+    <object name="Sistema_Gestion_Transporte_Privado_activeYear" class="java.lang.Integer" value="2015"
+         scope="global"/>
+    -->
+
+    <!-- Controller -->
+    <controller name="SignIn">
+        <action name="init" on-init="true" hidden="true"
+                class="com.openxava.naviox.actions.InitSignInAction"/>
+        <action name="signIn"
+                class="org.example.Sistema_Gestion_Transporte_Privado.Acciones.SignInAction"/>
+    </controller>
+
+</controllers>
