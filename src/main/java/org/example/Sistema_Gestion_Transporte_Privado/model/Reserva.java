@@ -42,4 +42,6 @@ public class Reserva {
     @DefaultValue("Pendiente")
     private String estado = "Pendiente";
 
+
+
 }

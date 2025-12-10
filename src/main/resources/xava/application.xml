@@ -23,5 +23,11 @@
         <model name="Usuario"/>
         <controller name="UsuarioAdmin"/>
     </module>
+    <module name="Reservas">
+        <model name="Reserva"/>
+        <controller name="Reserva"/>
+    </module>
+
 
 </application>
+

@@ -18,7 +18,11 @@
 
 	<dependencies>
 		<dependency>
-			<groupId>org.openxava</groupId>
+
+
+
+
+            <groupId>org.openxava</groupId>
 			<artifactId>openxava</artifactId>
 			<version>${openxava.version}</version>
 		</dependency>
@@ -178,5 +182,6 @@
 			</plugin>
 		</plugins>
 	</build>
+
 
 </project>
