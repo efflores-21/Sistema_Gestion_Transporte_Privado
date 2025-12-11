@@ -24,4 +24,9 @@
         <controller name="UsuarioAdmin"/>
     </module>
 
+    <module name ="Facturas">
+        <model name="Factura"/>
+        <controller name="FacturaController"/>
+    </module>
+
 </application>

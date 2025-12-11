@@ -10,8 +10,8 @@ import java.time.LocalDate;
 @Setter
 public class Pago extends Transaccion {
 
-    @ManyToOne
-    @JoinColumn(name = "id_factura", nullable = false)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "id_factura")
     private Factura factura;
 
     @Enumerated(EnumType.STRING)
@@ -19,12 +19,11 @@ public class Pago extends Transaccion {
     private MetodoPago metodoPago;
 
     @Column(name = "fecha_pago", nullable = false)
-    private LocalDate fechaPago;
+    private LocalDate fechaPago = LocalDate.now();
 
     @Column
-    private String referencia; // número de transacción, etc.
+    private String referencia;
 
-    // Constructor
     public Pago() {}
 
     public Pago(Factura factura, Double monto, MetodoPago metodoPago, String referencia) {
@@ -32,7 +31,5 @@ public class Pago extends Transaccion {
         this.factura = factura;
         this.metodoPago = metodoPago;
         this.referencia = referencia;
-        this.fechaPago = LocalDate.now();
     }
-
 }

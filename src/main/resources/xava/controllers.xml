@@ -18,22 +18,23 @@ https://github.com/openxava/openxava/blob/master/openxavatest/src/main/resources
     <controller name="UsuarioAdmin">
         <extends controller="Typical"/>
     </controller>
-
-    <!-- Environment variable:
-    <env-var name="Sistema_Gestion_Transporte_Privado_DEFAULT_YEAR" value="2015"/>
-    -->
-
-    <!-- Session object:
-    <object name="Sistema_Gestion_Transporte_Privado_activeYear" class="java.lang.Integer" value="2015"
-         scope="global"/>
-    -->
-
-    <!-- Controller -->
     <controller name="SignIn">
         <action name="init" on-init="true" hidden="true"
                 class="com.openxava.naviox.actions.InitSignInAction"/>
         <action name="signIn"
                 class="org.example.Sistema_Gestion_Transporte_Privado.Acciones.SignInAction"/>
     </controller>
+
+
+        <controller name="FacturaController">
+            <extends controller="Typical" />
+            <action name="enviarAvisoPago"
+                    label="Enviar aviso"
+                    mode="detail"
+                    class="org.example.Sistema_Gestion_Transporte_Privado.Acciones.EnviarAvisoPagoAction">
+                <use-object name="xava_view"/>
+            </action>
+        </controller>
+
 
 </controllers>

@@ -9,7 +9,7 @@ import org.openxava.annotations.Stereotype;
 
 import javax.persistence.*;
 import javax.ws.rs.DefaultValue;
-import java.util.Collection;
+
 
 @Entity
 @Getter
